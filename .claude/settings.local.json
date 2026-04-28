@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s https://api.github.com/repos/jprendes/emception)",
+      "Bash(awk -F'\"' '{print $2}')",
+      "Read(//private/tmp/cverify/**)",
+      "Bash(gcc -Wall -Wextra p47.c -o p47)",
+      "Bash(./p47)"
+    ]
+  }
+}
