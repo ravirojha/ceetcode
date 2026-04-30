@@ -2,9 +2,19 @@
   command = "npm run build"
   publish = "dist"
 
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+# /wandbox/compile.json → Netlify Function (which calls Wandbox).
+# We used to point this directly at https://wandbox.org/api/:splat with a
+# rewrite, but that occasionally produced
+#   "No space left on device (os error 28)"
+# from Netlify's edge proxy under load. Routing through a Function avoids it
+# and lets us retry transient Wandbox failures.
 [[redirects]]
-  from = "/wandbox/*"
-  to = "https://wandbox.org/api/:splat"
+  from = "/wandbox/compile.json"
+  to = "/.netlify/functions/wandbox"
   status = 200
   force = true
 
